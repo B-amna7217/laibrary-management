@@ -1,7 +1,5 @@
-
-import './globals.css';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/footer';
+// app/layout.tsx
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -10,11 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <Header/>
-      {children}
-      <Footer/>
-    </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -13,7 +13,7 @@ const AboutStudent = () => {
       {students.map((s) => (
         <h2 key={s.id}>
           {/* yahan dynamic route ka link */}
-          <Link href={`/aboutstudent/${s.id}`}>{s.name}</Link>
+          <Link href={`/about/aboutstudent/${s.id}`}>{s.name}</Link>
         </h2>
       ))}
     </div>

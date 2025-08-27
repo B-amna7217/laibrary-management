@@ -1,47 +1,45 @@
-import * as React from 'react';
-import '../globals.css';
+"use client";
 
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useAtom } from "jotai";
+import { authTokenAtom } from "@/store/authstore";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import Link from "next/link";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function PagesLayout({ children }: { children: React.ReactNode }) {
+  const [authToken] = useAtom(authTokenAtom);
+  const router = useRouter();
+
+  // agar login nahi hai to redirect
+  useEffect(() => {
+    if (!authToken) {
+      router.push("/");
+    }
+  }, [authToken, router]);
+
+  if (!authToken) return null; // jab tak redirect ho raha hai
+
   return (
-    <html lang="en">
-      <body>
-        <Box sx={{ backgroundColor: 'white', minHeight: '100vh' }}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                News
-              </Typography>
-              <Button color="inherit">Login</Button>
-            </Toolbar>
-          </AppBar>
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      {/* Sidebar */}
+      <aside
+        style={{
+          width: "220px",
+          background: "#f0f0f0",
+          padding: "20px",
+        }}
+      >
+        <h3>📚 sidebar</h3>
+        <nav style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Link href="/contact">Contact</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/available">Available</Link>
+          <Link href="/about">About</Link>
+        </nav>
+      </aside>
 
-          {/* Content of the page will show here */}
-       
-        </Box>
-           {children}
-          
-      </body>
-    </html>
+      {/* Page content */}
+      <main style={{ flex: 1, padding: "20px" }}>{children}</main>
+    </div>
   );
 }

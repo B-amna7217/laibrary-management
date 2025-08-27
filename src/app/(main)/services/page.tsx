@@ -6,10 +6,18 @@ export default function ServicesPage() {
       <h2 className="text-2xl font-bold mb-6 text-center">Our Services</h2>
 
       <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden text-center">
-        <Image width={180} height={180} src={"/images/story.jpg"} alt="ddd" />
+        {/* ✅ local image from /public/images/story.jpg */}
+        <Image
+          src="/images/story.jpg"
+          alt="Library"
+          width={180}
+          height={180}
+          className="mx-auto"
+        />
+
         <div className="p-5">
           <h3 className="text-xl font-semibold mb-2">
-            Laibray Management 
+            Library Management
           </h3>
           <p className="text-gray-600 mb-4">
             Waste management systems provide services such as waste collection
