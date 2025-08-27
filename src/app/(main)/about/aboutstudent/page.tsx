@@ -5,6 +5,8 @@ const AboutStudent = () => {
     { id: 1, name: "Student 1" },
     { id: 2, name: "Student 2" },
     { id: 3, name: "Student 3" },
+    { id: 4, name: "Student 4" },
+
   ];
 
   return (
