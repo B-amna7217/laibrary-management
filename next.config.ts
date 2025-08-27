@@ -1,9 +1,11 @@
 // next.config.ts
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizeCss: false, // disable LightningCSS
+    // Disable lightningcss to avoid missing module issue on Vercel
+    optimizeCss: false,
   },
 };
 
